@@ -1,0 +1,279 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}AlphaTrace | Blockchain Investigation Platform{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/landing.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-background">
+        <div class="grid-overlay"></div>
+    </div>
+
+    <div class="container hero-content">
+
+        <span class="hero-badge">
+            Version 0.1 • Ethereum Mainnet • USDT (ERC-20)
+        </span>
+
+        <h1>
+            Blockchain Investigation Platform
+        </h1>
+
+        <p>
+
+            AlphaTrace reconstructs cryptocurrency fund flows,
+            identifies suspicious transaction behaviour,
+            and assists investigators in tracing stolen
+            USDT (ERC-20) across the Ethereum blockchain
+            using graph analysis and forensic heuristics.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{% url 'investigation_setup' %}" class="btn btn-primary">
+
+                Start Investigation
+
+            </a>
+
+            <a href="#workflow" class="btn btn-secondary">
+
+                Investigation Workflow
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="supported-network">
+
+    <div class="container">
+
+        <h2>Current Supported Network</h2>
+
+        <div class="network-card">
+
+            <div>
+
+                <h3>Ethereum Mainnet</h3>
+
+                <span>Asset: USDT (ERC-20)</span>
+
+            </div>
+
+            <div class="status">
+
+                Supported
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="features">
+
+    <div class="container">
+
+        <h2>Current Investigation Capabilities</h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <h3>Graph Transaction Analysis</h3>
+
+                <p>
+
+                    Builds wallet relationship graphs using Neo4j
+                    for visual blockchain investigations.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Wallet Risk Scoring</h3>
+
+                <p>
+
+                    Scores suspicious wallets using forensic
+                    transaction heuristics.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Rapid Movement Detection</h3>
+
+                <p>
+
+                    Detects fast movement of funds immediately
+                    after victim deposits.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Exchange Detection</h3>
+
+                <p>
+
+                    Identifies transfers to known exchange
+                    deposit addresses.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Balance Dominance</h3>
+
+                <p>
+
+                    Measures how significant the victim's
+                    transfer is relative to wallet balance.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Multi-hop Tracing</h3>
+
+                <p>
+
+                    Follows suspicious fund flows through
+                    multiple wallets.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="workflow" class="workflow">
+
+    <div class="container">
+
+        <h2>Investigation Workflow</h2>
+
+        <div class="workflow-steps">
+
+            <div class="step">
+
+                <span>01</span>
+
+                <h3>
+
+                    Enter Wallet &
+                    Transaction Details
+
+                </h3>
+
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="step">
+
+                <span>02</span>
+
+                <h3>
+
+                    Reconstruct
+                    Transaction Graph
+
+                </h3>
+
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="step">
+
+                <span>03</span>
+
+                <h3>
+
+                    Execute
+                    Risk Heuristics
+
+                </h3>
+
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="step">
+
+                <span>04</span>
+
+                <h3>
+
+                    Explore
+                    Investigation Results
+
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="cta">
+
+    <div class="container">
+
+        <h2>
+
+            Ready to begin an investigation?
+
+        </h2>
+
+        <p>
+
+            Launch a blockchain trace on
+            Ethereum USDT (ERC-20).
+
+        </p>
+
+        <a href="{% url 'investigation_setup' %}"
+
+           class="btn btn-primary">
+
+            Start Investigation
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

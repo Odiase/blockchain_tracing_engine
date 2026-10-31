@@ -1,0 +1,229 @@
+.setup-page {
+
+    padding: 60px 0 100px;
+
+}
+
+.page-header {
+
+    margin-bottom: 50px;
+
+}
+
+.page-header h1 {
+
+    font-size: 2.5rem;
+
+    margin-bottom: 15px;
+
+}
+
+.page-header p {
+
+    max-width: 700px;
+
+    color: #94a3b8;
+
+    line-height: 1.8;
+
+}
+
+.setup-grid {
+
+    display: grid;
+
+    grid-template-columns: 2fr 1fr;
+
+    gap: 35px;
+
+}
+
+.setup-card {
+
+    background: #111827;
+
+    border: 1px solid #1f2937;
+
+    border-radius: 14px;
+
+    padding: 40px;
+
+}
+
+.setup-card h2 {
+
+    margin-bottom: 35px;
+
+}
+
+.form-group {
+
+    margin-bottom: 25px;
+
+}
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-weight: 600;
+
+    color: #d1d5db;
+
+}
+
+.form-group input {
+
+    width: 100%;
+
+    padding: 15px;
+
+    background: #0f172a;
+
+    border: 1px solid #374151;
+
+    border-radius: 8px;
+
+    color: white;
+
+    transition: .25s;
+
+}
+
+.form-group input:focus {
+
+    outline: none;
+
+    border-color: #3b82f6;
+
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+
+}
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+}
+
+.btn-large {
+
+    margin-top: 20px;
+
+    width: 100%;
+
+    padding: 16px;
+
+    font-size: 1rem;
+
+}
+
+.sidebar {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+.sidebar-card {
+
+    background: #111827;
+
+    border: 1px solid #1f2937;
+
+    border-radius: 14px;
+
+    padding: 28px;
+
+}
+
+.sidebar-card h3 {
+
+    margin-bottom: 18px;
+
+    font-size: 1.1rem;
+
+}
+
+.sidebar-card p,
+.sidebar-card li {
+
+    color: #94a3b8;
+
+    line-height: 1.8;
+
+}
+
+.sidebar-card ul,
+.sidebar-card ol {
+
+    padding-left: 20px;
+
+}
+
+.tag {
+
+    display: inline-block;
+
+    background: rgba(37, 99, 235, .15);
+
+    color: #60a5fa;
+
+    border: 1px solid rgba(59, 130, 246, .25);
+
+    border-radius: 25px;
+
+    padding: 8px 16px;
+
+    margin: 5px 5px 0 0;
+
+    font-size: .9rem;
+
+}
+
+.warning {
+
+    border-left: 4px solid #f59e0b;
+
+}
+
+.warning h3 {
+
+    color: #fbbf24;
+
+}
+
+@media (max-width: 992px) {
+
+    .setup-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+@media (max-width: 640px) {
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .setup-card {
+
+        padding: 25px;
+
+    }
+
+}

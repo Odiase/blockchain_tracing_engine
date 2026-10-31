@@ -1,0 +1,170 @@
+.graph-page {
+  padding: 45px 0;
+}
+
+.container-fluid {
+  max-width: 1800px;
+  margin: auto;
+  padding: 0 30px;
+}
+
+.graph-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.graph-header h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.graph-header p {
+  color: #94a3b8;
+}
+
+.graph-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.graph-actions button {
+  padding: 12px 18px;
+  background: #1d4ed8;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.graph-actions button:hover {
+  background: #2563eb;
+}
+
+.graph-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr 340px;
+  gap: 25px;
+  height: 760px;
+}
+
+.graph-sidebar,
+.wallet-panel {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  padding: 25px;
+  overflow: auto;
+}
+
+.graph-sidebar h3,
+.wallet-panel h3 {
+  margin-bottom: 25px;
+}
+
+.graph-sidebar label {
+  display: block;
+  margin: 20px 0 8px;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.graph-sidebar input,
+.graph-sidebar select {
+  width: 100%;
+  padding: 12px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: white;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.graph-canvas {
+  background: #0b1220;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+  position: relative;
+  overflow: hidden;
+}
+
+#graph-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  color: #334155;
+}
+
+.wallet-address {
+  margin: 20px 0;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.wallet-risk {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.wallet-risk.high {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+.wallet-info {
+  margin-bottom: 25px;
+}
+
+.wallet-info div {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wallet-panel a {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+@media (max-width: 1400px) {
+  .graph-layout {
+    grid-template-columns: 260px 1fr;
+  }
+  .wallet-panel {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .graph-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .graph-sidebar {
+    order: 2;
+  }
+  .graph-canvas {
+    height: 600px;
+  }
+}/*# sourceMappingURL=graph_explorer.css.map */

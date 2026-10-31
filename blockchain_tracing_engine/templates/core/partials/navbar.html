@@ -1,0 +1,107 @@
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <!-- Logo -->
+        <a href="{% url 'landing' %}" class="nav-logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <div class="logo-text">
+                <span class="logo-title">
+                    AlphaTrace
+                </span>
+
+                <span class="logo-subtitle">
+                    Blockchain Forensics
+                </span>
+            </div>
+
+        </a>
+
+
+        <!-- Desktop Navigation -->
+        <ul class="nav-links">
+
+            <li>
+                <a href="{% url 'landing' %}">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'investigation_setup' %}">
+                    New Investigation
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    Documentation
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    About
+                </a>
+            </li>
+
+        </ul>
+
+
+        <!-- Right Side -->
+        <div class="nav-actions">
+
+            <div class="supported-network">
+
+                <span class="network-dot"></span>
+
+                Ethereum Mainnet
+            </div>
+
+            <a
+                href="{% url 'investigation_setup' %}"
+                class="btn btn-primary nav-btn"
+            >
+                Start Trace
+            </a>
+
+        </div>
+
+
+        <!-- Mobile Hamburger -->
+        <button class="mobile-menu-btn">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+    </div>
+
+
+    <!-- Mobile Menu -->
+
+    <div class="mobile-nav">
+
+        <a href="{% url 'landing' %}">
+            Home
+        </a>
+
+        <a href="{% url 'investigation_setup' %}">
+            New Investigation
+        </a>
+
+        <a href="#">
+            Documentation
+        </a>
+
+        <a href="#">
+            About
+        </a>
+
+    </div>
+
+</nav>

@@ -1,0 +1,264 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+Graph Explorer | AlphaTrace
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/graph_explorer.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="graph-page">
+
+    <div class="container-fluid">
+
+        <div class="graph-header">
+
+            <div>
+
+                <h1>
+
+                    Investigation Graph Explorer
+
+                </h1>
+
+                <p>
+
+                    Visualize fund movement across wallets.
+
+                </p>
+
+            </div>
+
+            <div class="graph-actions">
+
+                <button>
+
+                    Expand Graph
+
+                </button>
+
+                <button>
+
+                    Center View
+
+                </button>
+
+                <button>
+
+                    Reset
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="graph-layout">
+
+            <!-- LEFT PANEL -->
+
+            <aside class="graph-sidebar">
+
+                <h3>
+
+                    Filters
+
+                </h3>
+
+                <label>
+
+                    Search Wallet
+
+                </label>
+
+                <input type="text" placeholder="0x..." />
+
+                <label>
+
+                    Maximum Depth
+
+                </label>
+
+                <select>
+
+                    <option>1 Hop</option>
+
+                    <option selected>2 Hops</option>
+
+                    <option>3 Hops</option>
+
+                    <option>4 Hops</option>
+
+                </select>
+
+                <label>
+
+                    Risk Level
+
+                </label>
+
+                <div class="checkbox">
+
+                    <input type="checkbox" checked>
+
+                    <span>High</span>
+
+                </div>
+
+                <div class="checkbox">
+
+                    <input type="checkbox" checked>
+
+                    <span>Medium</span>
+
+                </div>
+
+                <div class="checkbox">
+
+                    <input type="checkbox" checked>
+
+                    <span>Low</span>
+
+                </div>
+
+                <label>
+
+                    Known Exchanges
+
+                </label>
+
+                <div class="checkbox">
+
+                    <input type="checkbox" checked>
+
+                    <span>Show Exchange Wallets</span>
+
+                </div>
+
+            </aside>
+
+            <!-- GRAPH -->
+
+            <main class="graph-canvas">
+
+                <div id="graph-container">
+
+                    <div class="placeholder">
+
+                        GRAPH WILL RENDER HERE
+
+                    </div>
+
+                </div>
+
+            </main>
+
+            <!-- INSPECTOR -->
+
+            <aside class="wallet-panel">
+
+                <h3>
+
+                    Wallet Details
+
+                </h3>
+
+                <div class="wallet-address">
+
+                    0x991d10f39a5...
+
+                </div>
+
+                <div class="wallet-risk high">
+
+                    HIGH RISK
+
+                </div>
+
+                <div class="wallet-info">
+
+                    <div>
+
+                        <span>
+
+                            Incoming
+
+                        </span>
+
+                        <strong>
+
+                            7,510 USDT
+
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+
+                            Outgoing
+
+                        </span>
+
+                        <strong>
+
+                            7,495 USDT
+
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+
+                            Known Exchange
+
+                        </span>
+
+                        <strong>
+
+                            No
+
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+
+                            Graph Depth
+
+                        </span>
+
+                        <strong>
+
+                            2
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <a href="#">
+
+                    Open Wallet Details →
+
+                </a>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

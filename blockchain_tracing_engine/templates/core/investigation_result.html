@@ -1,0 +1,301 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+Investigation Results | AlphaTrace
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/investigation_results.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="results-page">
+
+    <div class="container">
+
+        <div class="results-header">
+
+            <h1>
+
+                Investigation Complete
+
+            </h1>
+
+            <p>
+
+                The blockchain investigation has successfully
+                finished processing.
+
+            </p>
+
+        </div>
+
+        <div class="hero-score">
+
+            <div class="score">
+
+                {{task_result.final_score}}
+
+            </div>
+
+            <div class="score-text">
+
+                <h2>
+
+                    {{task_result.risk_level}} RISK
+
+                </h2>
+
+                <p>
+
+                    Strong evidence of rapid laundering behaviour.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="summary-card">
+
+            <h2>
+
+                Investigation Summary
+
+            </h2>
+
+            <ul>
+
+                <li>
+
+                    Victim funds represented nearly the entire wallet balance.
+
+                </li>
+
+                <li>
+
+                    Funds exited the wallet within minutes.
+
+                </li>
+
+                <li>
+
+                    No exchange interaction detected.
+
+                </li>
+
+                <li>
+
+                    Graph expanded to two transaction hops.
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="results-grid">
+
+            <div class="breakdown-card">
+
+                <h2>
+
+                    Risk Breakdown
+
+                </h2>
+
+                <div class="metric">
+
+                    <span>
+
+                        Balance Dominance
+
+                    </span>
+
+                    <div class="bar">
+
+                        <div style="width:{{task_result.breakdown.balance_dominance_score}}%">
+
+                        </div>
+
+                    </div>
+
+                    <strong>
+
+                        {{task_result.breakdown.balance_dominance_score}}%
+
+                    </strong>
+
+                </div>
+
+                <div class="metric">
+
+                    <span>
+
+                        Rapid Movement
+
+                    </span>
+
+                    <div class="bar">
+
+                        <div style="width:{{task_result.breakdown.rapid_movement_score}}%">
+
+                        </div>
+
+                    </div>
+
+                    <strong>
+
+                        {{task_result.breakdown.rapid_movement_score}}%
+
+                    </strong>
+
+                </div>
+
+                <div class="metric">
+
+                    <span>
+
+                        Exchange Detection
+
+                    </span>
+
+                    <div class="bar">
+
+                        <div style="width:{{task_result.breakdown.exchange_detection_score}}%">
+
+                        </div>
+
+                    </div>
+
+                    <strong>
+
+                        {{task_result.breakdown.exchange_detection_score}}%
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="stats-card">
+
+                <h2>
+
+                    Investigation Statistics
+
+                </h2>
+
+                <div class="stat">
+
+                    <label>
+
+                        Wallets Investigated
+
+                    </label>
+
+                    <strong>
+
+                        {{task_result.wallets_investigated_count}}
+
+                    </strong>
+
+                </div>
+
+                <div class="stat">
+
+                    <label>
+
+                        Transactions Processed
+
+                    </label>
+
+                    <strong>
+
+                        {{task_result.transactions_processed}}
+
+                    </strong>
+
+                </div>
+
+                <div class="stat">
+
+                    <label>
+
+                        Graph Depth
+
+                    </label>
+
+                    <strong>
+
+                        2
+
+                    </strong>
+
+                </div>
+
+                <div class="stat">
+
+                    <label>
+
+                        Known Exchanges
+
+                    </label>
+
+                    <strong>
+
+                        0
+
+                    </strong>
+
+                </div>
+
+                <div class="stat">
+
+                    <label>
+
+                        Suspicious Wallets
+
+                    </label>
+
+                    <strong>
+
+                        7
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <a href="#">
+
+                Open Graph Explorer
+
+            </a>
+
+            <a href="#">
+
+                Wallet Details
+
+            </a>
+
+            <a href="#">
+
+                Export Investigation
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

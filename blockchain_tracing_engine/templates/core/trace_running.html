@@ -1,0 +1,344 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+Running Investigation | AlphaTrace
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/trace_running.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="trace-running">
+
+    <div class="container">
+
+        <div class="trace-header">
+
+            <h1>
+
+                Blockchain Investigation Running
+
+            </h1>
+
+            <p>
+
+                The investigation engine is currently
+                collecting blockchain intelligence and
+                constructing the transaction graph.
+
+            </p>
+
+        </div>
+
+        <div class="summary-card">
+
+            <div>
+
+                <span class="label">
+
+                    Investigation
+
+                </span>
+
+                <h3>
+                    {{task_id}}
+                    <!-- INV-2026-0001 -->
+
+                </h3>
+
+            </div>
+
+            <div>
+
+                <span class="label">
+
+                    Network
+
+                </span>
+
+                <h3>
+
+                    Ethereum Mainnet
+
+                </h3>
+
+            </div>
+
+            <div>
+
+                <span class="label">
+
+                    Asset
+
+                </span>
+
+                <h3>
+
+                    USDT (ERC-20)
+
+                </h3>
+
+            </div>
+
+        </div>
+
+        <div class="progress-card">
+
+            <div class="progress-top">
+
+                <span>
+
+                    Overall Progress
+
+                </span>
+
+                <span id="progressValue">
+
+                    20%
+
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div class="progress-fill" id="progressFill" style="width: 20%">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="running-grid">
+
+            <div class="steps-card">
+
+                <h2>
+
+                    Investigation Pipeline
+
+                </h2>
+
+                <ul id="pipelineList">
+
+                    <li class="completed">
+
+                        <span>o</span>
+
+                        Validate Inputs
+
+                    </li>
+
+                    <li class="completed">
+
+                        <span>o</span>
+
+                        Retrieve Wallet Transactions
+
+                    </li>
+
+                    <li class="active">
+
+                        <span>o</span>
+
+                        Build Transaction Graph
+
+                    </li>
+
+                    <li>
+
+                        <span>○</span>
+
+                        Execute Risk Heuristics
+
+                    </li>
+
+                    <li>
+
+                        <span>○</span>
+
+                        Generate Wallet Risk Score
+
+                    </li>
+
+                    <li>
+
+                        <span>○</span>
+
+                        Prepare Investigation Results
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="log-card">
+
+                <h2>
+
+                    Live Investigation Log
+
+                </h2>
+
+                <div class="log-window">
+
+                    <div class="log-entry">
+
+                        12:14:02
+
+                        Investigation initialized.
+
+                    </div>
+
+                    <div class="log-entry">
+
+                        12:14:04
+
+                        Ethereum connection established.
+
+                    </div>
+
+                    <div class="log-entry">
+
+                        12:14:06
+
+                        Victim transaction located.
+
+                    </div>
+
+                    <div class="log-entry">
+
+                        12:14:09
+
+                        Building Neo4j graph...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+{% block extra_js %}
+<!-- trace_running.html -->
+<h2>Investigation Status: <span id="status-text">Processing...</span></h2>
+<div id="results-container"></div>
+
+<script>
+    // scroll progress bar into sight
+    window.onload = () => {
+        const element = document.getElementById('progressValue');
+        const headerOffset = 100; // Change this to match your navbar height in pixels
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    };
+
+    const taskId = "{{ task_id }}";
+    let progress = 0;
+
+    function checkStatus() {
+        fetch(`/api/get_trace_status/${taskId}/`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('status-text').innerText = data.status;
+
+                if (data.ready) {
+                    if (data.status === 'SUCCESS') {
+                        document.getElementById('progressValue').innerText = `100%`
+                        document.getElementById('progressFill').style.width = `100%`;
+                        updatePipelineTicks(100)
+
+                        document.getElementById('results-container').innerHTML =
+                            `<pre>${JSON.stringify(data.result, null, 2)}</pre>`;
+                            createResultsButton();
+                    } else {
+                        document.getElementById('results-container').innerText = "Trace failed: " + data.error;
+                    }
+                } else {
+                    if (data.status == 'PENDING') {
+                        progress === 0 ? progress = 40 : (progress >= 40 && progress < 100) ? progress += 10 : null;
+                        document.getElementById('progressFill').style.width = `${progress}%`;
+                        document.getElementById('progressValue').innerText = `${progress}%`
+
+                        // update pipeline progress
+                        updatePipelineTicks(progress);
+                    }
+                    // Task still running; check again in 1.5 second
+                    setTimeout(checkStatus, 1500);
+                }
+            });
+    }
+
+    function updatePipelineTicks(currentProgress) {
+        const listItems = document.querySelectorAll('#pipelineList li');
+        const totalSteps = listItems.length;
+
+        listItems.forEach((li, index) => {
+            const span = li.querySelector('span');
+
+            // Calculate the percentage threshold required to complete this specific step
+            // For 6 steps: Step 1 (16%), Step 2 (33%), Step 3 (50%), Step 4 (66%), Step 5 (83%), Step 6 (100%)
+            const stepThreshold = Math.round(((index + 1) / totalSteps) * 100);
+
+            if (currentProgress >= 100) {
+                // Requirement: Once it is at 100%, if all processes are not checked, check them
+                li.className = 'completed';
+                span.innerText = '✓';
+            } else if (currentProgress >= stepThreshold) {
+                // Step is finished
+                li.className = 'completed';
+                span.innerText = '✓';
+            } else if (currentProgress >= stepThreshold - (100 / totalSteps)) {
+                // Current step is actively running
+                li.className = 'active';
+                span.innerText = '⏳';
+            } else {
+                // Step is still waiting
+                li.className = '';
+                span.innerText = '○';
+            }
+        });
+    }
+
+    function createResultsButton() {
+        const btn = document.createElement('button');
+        btn.id = 'viewResultsBtn';
+        btn.innerText = 'View Results';
+        btn.style.background = '#2563eb';
+        btn.style.color = 'white';
+        btn.style.padding = '12px 24px';
+        btn.style.border = 'none';
+        btn.style.borderRadius = '6px';
+        btn.style.cursor = 'pointer';
+        btn.style.marginTop = '20px';
+
+        btn.addEventListener('click', () => {
+            window.location.href = '/investigation_result/'; // Your target link
+        });
+
+        document.querySelector('.steps-card').appendChild(btn);
+    }
+
+
+    // Start checking when page loads
+    if (taskId) {
+        checkStatus();
+    }
+</script>
+{% endblock %}
+
+{% endblock %}
